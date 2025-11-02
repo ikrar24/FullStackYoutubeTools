@@ -26,11 +26,11 @@ title: "YouTube Video SEO Checker – Free Online Tool to Analyze SEO Instantly"
     title: "Free SEO Analysis Tool",
     description:
       "Free YouTube SEO Checker – Instantly analyze your video title, tags, description, hashtags and more. Get detailed SEO score insights.",
-    url: "https://yourwebsite.com/seo-analysis",
-    siteName: "Your Website",
+    url: "http://localhost:3000/",
+    siteName: "BootsViews",
     images: [
       {
-        url: "https://yourwebsite.com/seo-preview.png",
+        url: "/opengraph.jpeg",
         width: 1200,
         height: 630,
         alt: "SEO Analysis Tool Preview",

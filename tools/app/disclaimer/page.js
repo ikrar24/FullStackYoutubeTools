@@ -20,14 +20,14 @@ export const metadata = {
     title: "Disclaimer – Your Website",
     description:
       "This disclaimer explains the limitations of liability and accuracy of the content provided on Your Website. Please read carefully before using our services.",
-    url: "https://yourwebsite.com/disclaimer",
-    siteName: "Your Website",
+    url: "http://localhost:3000/",
+    siteName: "BootsViews",
     images: [
       {
-        url: "https://yourwebsite.com/disclaimer-preview.png",
+        url: "/opengraph.jpeg",
         width: 1200,
         height: 630,
-        alt: "Disclaimer Page Preview",
+        alt: "SEO Analysis Tool Preview",
       },
     ],
     locale: "en_US",

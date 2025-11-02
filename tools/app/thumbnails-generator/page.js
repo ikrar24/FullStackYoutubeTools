@@ -26,14 +26,14 @@ export const metadata = {
     title: "Free AI YouTube Thumbnail Generator Tool",
     description:
       "Create professional, eye-catching YouTube thumbnails instantly using our free AI-powered generator. Boost your video clicks and engagement effortlessly.",
-    url: "https://yourwebsite.com/youtube-thumbnail-generator",
-    siteName: "Your Website",
+    url: "http://localhost:3000/",
+    siteName: "BootsViews",
     images: [
       {
-        url: "https://yourwebsite.com/youtube-thumbnail-preview.png",
+        url: "/opengraph.jpeg",
         width: 1200,
         height: 630,
-        alt: "YouTube Thumbnail Generator Preview",
+        alt: "SEO Analysis Tool Preview",
       },
     ],
     locale: "en_US",

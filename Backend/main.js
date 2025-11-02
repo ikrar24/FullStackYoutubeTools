@@ -28,7 +28,6 @@ app.use(express.urlencoded({ extended: true }));
 // ✅ Database Connection
 connection();
 
-
 // middleware auth check with origin
 app.use((req, res, next) => {
   const allowedOrigin = process.env.ORIGIN;
@@ -44,18 +43,12 @@ app.use((req, res, next) => {
   console.log("Client Key:", clientKey);
   console.log("Expected Key:", expectedKey);
 
-  console.log(clientKey === expectedKey);
-  
-
-
   if (!clientKey || clientKey !== expectedKey) {
     return res.status(401).json({ message: "Invalid User" });
   }
 
   next();
 });
-
-
 
 // middleware auth check with secrete key
 // app.use((req, res, next) => {
@@ -75,11 +68,6 @@ app.use((req, res, next) => {
 //   next();
 // });
 
-
-
-
-
-
 // ✅ Routes
 app.use("/api", scrapeRoutes);
 app.use("/api", CheckOldScrapeRoute);
@@ -87,12 +75,9 @@ app.use("/api/views", viewRoutes);
 app.use("/api", generetedDescrptionRoute);
 app.use("/api", titleSuggetionRoutes);
 
-// thumbnails api 
+// thumbnails api
 app.use("/api/images", imageRoutes);
 app.get("/", (req, res) => res.send("✅ Clipdrop + Cloudinary API Running"));
-
-
-
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () =>

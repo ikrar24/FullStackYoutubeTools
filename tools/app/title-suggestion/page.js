@@ -26,14 +26,14 @@ export const metadata = {
     title: "Free AI YouTube Title Generator Tool",
     description:
       "Generate catchy and SEO-optimized YouTube titles instantly with our free AI tool. Perfect for creators who want better visibility and engagement.",
-    url: "https://yourwebsite.com/youtube-title-generator",
-    siteName: "Your Website",
+    url: "http://localhost:3000/",
+    siteName: "BootsViews",
     images: [
       {
-        url: "https://yourwebsite.com/youtube-title-preview.png",
+        url: "/opengraph.jpeg",
         width: 1200,
         height: 630,
-        alt: "YouTube Title Generator Preview",
+        alt: "SEO Analysis Tool Preview",
       },
     ],
     locale: "en_US",
