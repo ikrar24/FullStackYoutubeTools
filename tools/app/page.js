@@ -8,24 +8,28 @@ import HowTiWork from "@/Componets/HowTiWork";
 
 function Page() {
   useEffect(() => {
-    // Only run in browser
     if (typeof window !== "undefined") {
       const slug = window.location.pathname;
 
+      
+      
+
       if (slug === "/") {
-        fetch(`http://localhost:4000/api/views?slug=${slug}`)
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/views?slug=${slug}`, {
+          headers: {
+            "x-client-key":process.env.NEXT_PUBLIC_SECRETE_KEY,
+          },
+        });
       }
     }
   }, []);
 
   return (
     <>
-      
       <Hero />
       <HowTiWork />
       <BoostViewsExplanation />
       <Faq />
-    
     </>
   );
 }

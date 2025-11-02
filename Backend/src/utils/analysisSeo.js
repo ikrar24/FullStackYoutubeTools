@@ -22,8 +22,54 @@ const MODELS = [
   "meta-llama/llama-4-maverick:free",
 ];
 
+// 🧠 Universal Extractor – Works with any AI response format
+const extractSeoScores = (text = "") => {
+  const cleanText = text
+    .replace(/\s+/g, " ")
+    .replace(/[\*_\~\|\#\>\-]/g, "")
+    .replace(/ /g, " ")
+    .replace(/\u00A0/g, " ") // remove non-breaking space
+    .trim();
+
+  const getScore = (section) => {
+    const regex = new RegExp(
+      `${section}[^\\d]*(\\d{1,3}(?:\\.\\d+)?)\\s*(?:%|\\/100)?`,
+      "i"
+    );
+    const match = cleanText.match(regex);
+    return match ? Number(match[1]) : null;
+  };
+
+  const title = getScore("Title");
+  const description = getScore("Description");
+  const tags = getScore("Tags?");
+  const hashtags = getScore("Hashtags?");
+  const overall =
+    getScore("Overall") ||
+    getScore("Total") ||
+    getScore("Final") ||
+    getScore("Combined") ||
+    null;
+
+  // 🧩 Auto-calculate overall if missing
+  let computedOverall = overall;
+  if (!computedOverall) {
+    const all = [title, description, tags, hashtags].filter((n) => typeof n === "number");
+    if (all.length) computedOverall = Math.round(all.reduce((a, b) => a + b, 0) / all.length);
+  }
+
+  return {
+    title: title ?? 0,
+    description: description ?? 0,
+    tags: tags ?? 0,
+    hashtags: hashtags ?? 0,
+    overall: computedOverall ?? 0,
+  };
+};
+
+// 🔍 Main Analysis Function
 const analysisSeo = async (userData) => {
-  const fallbackPrompt = `
+  const prompt = `
 You are an advanced YouTube SEO analyzer and optimizer AI.
 Your task is to evaluate the user's provided YouTube Title, Description, Tags, and Hashtags
 based on SEO performance, readability, keyword density, and engagement potential.
@@ -43,38 +89,9 @@ Instructions:
 6. Suggest improvements if Poor/Average.
 
 Output Format (strictly follow this, no greeting or intro):
-
 `;
 
   let lastError = null;
-
-  // ✅ Helper function: Extract SEO scores from model result
-const extractSeoScores = (result) => {
-  // Helper: find score by keyword and nearby context
-  const findContextScore = (sectionName) => {
-    const sectionRegex = new RegExp(
-      `${sectionName}[^]*?(?:SEO\\s*Score\\s*[:：-]?\\s*[*_~]*\\s*(\\d+(?:\\.\\d+)?)\\s*(?:%|\\/100)?[*_~]*)`,
-      "i"
-    );
-    const match = result.match(sectionRegex);
-    return match ? Number(match[1]) : null;
-  };
-
-  const title = findContextScore("Title");
-  const description = findContextScore("Description");
-  const tags = findContextScore("Tags?");
-  const hashtags = findContextScore("Hashtags?");
-  
-  // 🔧 Handle "Overall SEO Score: 82%" or "Overall SEO Score: 82/100" or "Overall Score: 82%"
-  const overallRegex =
-    /Overall\s*(?:SEO\s*)?Score\s*[:：-]?\s*[*_~]*\s*(\d+(?:\.\d+)?)\s*(?:%|\/100)?[*_~]*/i;
-  const overallMatch = result.match(overallRegex);
-  const overall = overallMatch ? Number(overallMatch[1]) : null;
-
-  return { title, description, tags, hashtags, overall };
-};
-
-
 
   // 🔁 Try each OpenRouter model
   for (const model of MODELS) {
@@ -82,7 +99,7 @@ const extractSeoScores = (result) => {
       console.log(`🚀 Trying model: ${model}`);
 
       const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 25000); // 25s timeout
+      const timeout = setTimeout(() => controller.abort(), 25000);
 
       const response = await axios.post(
         "https://openrouter.ai/api/v1/chat/completions",
@@ -110,7 +127,6 @@ const extractSeoScores = (result) => {
       } else {
         throw new Error("Empty response");
       }
-
     } catch (error) {
       console.error(`❌ Model failed: ${model}`, error.response?.data || error.message);
       lastError = error;
@@ -118,39 +134,14 @@ const extractSeoScores = (result) => {
     }
   }
 
-  // 🧠 All models failed → Gemini fallback
+  // 🧠 Gemini fallback
   console.log("⚠️ All OpenRouter models failed. Switching to Gemini fallback...");
 
   try {
-    const fallbackPrompt = `
-You are an advanced YouTube SEO analyzer and optimizer AI.
-Your task is to evaluate the user's provided YouTube Title, Description, Tags, and Hashtags
-based on SEO performance, readability, keyword density, and engagement potential.
-
-Input:
-- Title: [${userData.title}]
-- Description: [${userData.description}]
-- Tags: [${userData.tags}]
-- Hashtags: [${userData.hashtags}]
-
-Instructions:
-1. Analyze each section (Title, Description, Tags, Hashtags).
-2. Give percentage-based SEO scores for each.
-3. Include Keyword Density, Readability, Engagement Optimization.
-4. Calculate Overall SEO Score (0–100).
-5. Label as Excellent, Good, Average, or Poor.
-6. Suggest improvements if Poor/Average.
-
-Output Format (strictly follow this, no greeting or intro):
-
-`;
-
     const geminiResponse = await axios.post(GEMINI_API, {
       contents: [
         {
-          parts: [
-            { text: fallbackPrompt },
-          ],
+          parts: [{ text: prompt }],
         },
       ],
     });
@@ -164,13 +155,9 @@ Output Format (strictly follow this, no greeting or intro):
     } else {
       throw new Error("Gemini returned no candidates");
     }
-
   } catch (geminiError) {
     console.error("❌ Gemini fallback failed:", geminiError.message);
-    return {
-      success: false,
-      error: "Internal Error",
-    };
+    return { success: false, error: "Internal Error" };
   }
 };
 

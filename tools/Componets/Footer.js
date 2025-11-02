@@ -19,9 +19,6 @@ const Footer = () => {
         {/* Right Section */}
         <div className="text-center md:text-right flex flex-col md:flex-row gap-4 md:gap-6 items-center">
           {/* Footer Links */}
-          <Link href="/contact" className="hover:text-white text-sm">
-            Contact
-          </Link>
           <Link href="/privacy-policy" className="hover:text-white text-sm">
             Privacy Policy
           </Link>

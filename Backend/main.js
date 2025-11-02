@@ -16,12 +16,69 @@ dotenv.config();
 const app = express();
 
 // ✅ Middleware (must be before routes)
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.ORIGIN,
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ✅ Database Connection
 connection();
+
+
+// middleware auth check with origin
+app.use((req, res, next) => {
+  const allowedOrigin = process.env.ORIGIN;
+  const origin = req.get("origin");
+
+  if (origin && origin !== allowedOrigin) {
+    return res.status(403).json({ message: "Unauthorized source" });
+  }
+
+  const clientKey = req.header("x-client-key")?.trim();
+  const expectedKey = process.env.FRONTEND_KEY?.trim();
+
+  console.log("Client Key:", clientKey);
+  console.log("Expected Key:", expectedKey);
+
+  console.log(clientKey === expectedKey);
+  
+
+
+  if (!clientKey || clientKey !== expectedKey) {
+    return res.status(401).json({ message: "Invalid User" });
+  }
+
+  next();
+});
+
+
+
+// middleware auth check with secrete key
+// app.use((req, res, next) => {
+//   // Ignore preflight and favicon requests
+//   if (req.method === "OPTIONS" || req.path === "/favicon.ico") {
+//     return next();
+//   }
+
+//   const clientKey = req.header("x-client-key");
+//   console.log("Client Key:", clientKey);
+//   console.log("Expected Key:", process.env.FRONTEND_KEY);
+
+//   if (clientKey !== process.env.FRONTEND_KEY) {
+//     return res.status(401).json({ message: "Invalid User" });
+//   }
+
+//   next();
+// });
+
+
+
+
+
 
 // ✅ Routes
 app.use("/api", scrapeRoutes);

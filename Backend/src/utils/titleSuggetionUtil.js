@@ -23,21 +23,30 @@ const MODELS = [
 const titleSuggetionUtils = async (userData) => {
   console.log("🧠 Inside Util, received:", userData);
 
-  const prompt = `You are an advanced YouTube SEO Title Generator AI.
+ const prompt = `You are an advanced YouTube SEO Title Generator AI.
 Your only task is to generate exactly 10 SEO-friendly, highly clickable, and keyword-optimized YouTube video titles based on the user’s given video topic.
 
 Input:
 - Video Topic: ${userData.topic}
 
+Language rule (important):
+- Detect the language/script of the provided Video Topic and RESPOND IN THE SAME LANGUAGE:
+  • If the topic is written in Devanagari (हिन्दी), reply in Hindi (Devanagari).
+  • If the topic is written in Latin script but contains Hindi/Hinglish words (e.g., "html file me js kaise add kare"), reply in Hinglish (Latin-script Hindi).
+  • If the topic is written in English, reply in English.
+- If the language cannot be confidently detected, default to English.
+- Do NOT translate the topic; generate titles in the same language/script the user provided.
+
 Instructions:
-1. Analyze the given topic for YouTube SEO trends, relevant keywords, and audience search intent.
+1. Analyze the given topic for YouTube SEO trends, relevant keywords, and audience search intent in the detected language.
 2. Generate exactly 10 unique titles that are:
-   - SEO-friendly and optimized for ranking
+   - SEO-friendly and optimized for ranking in the detected language
    - Engaging and click-worthy
-   - Grammatically correct and natural-sounding
+   - Grammatically correct and natural-sounding for that language/script
    - Containing strong emotional or action-driven words (where relevant)
-3. Each title should be between 50–70 characters.
-4. Do **not** include any introduction, explanation, or extra lines — only show the 10 titles as a numbered list.
+3. Each title should be between 50–70 characters (count characters in the same script as the output).
+4. Do NOT include any introduction, explanation, or extra lines — only show the 10 titles as a numbered list.
+5. Preserve the language style: for Hinglish use natural Latin-script Hindi phrasing (no Devanagari); for Hindi use Devanagari; for English use standard English.
 
 Output Format (strictly follow this — no greeting, no intro):
 1. [Title 1]
@@ -50,7 +59,6 @@ Output Format (strictly follow this — no greeting, no intro):
 8. [Title 8]
 9. [Title 9]
 10. [Title 10]
-
 `;
 
   let lastError = null;

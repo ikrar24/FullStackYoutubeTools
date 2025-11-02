@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Boost Your YouTube Growth",
+  title: "Boost Your YouTube Video",
   description: "Generate thumbnails, title, SEO-optimized descriptions, Aanalyz your videos and more to grow your channel faster.",
    keywords: [
   "YouTube SEO checker",
@@ -72,7 +72,7 @@ export default function RootLayout({ children }) {
       <body>
         <Navbar/>
         {children}
-         {/* <Footer/> */}
+         <Footer/>
 
 
            <Toaster

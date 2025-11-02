@@ -20,7 +20,7 @@ function Hero() {
             Generate <strong>thumbnails,</strong> <strong>title,</strong> <strong className="text-red-500">SEO-optimized</strong> <strong>descriptions</strong> and more to <strong>grow your channel faster.</strong>
           </p>
           <Link 
-            href="/" 
+            href="/seo-aanalysis" 
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 cursor-pointer"
           >
             Get Started Free
