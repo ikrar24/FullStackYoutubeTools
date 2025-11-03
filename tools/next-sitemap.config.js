@@ -1,9 +1,33 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://yourwebsite.com",
+  siteUrl: 'https://bostviews.in',
+  alternateUrls: ['https://www.bostviews.in'],
   generateRobotsTxt: true,
   sitemapSize: 7000,
-  changefreq: "weekly",
-  priority: 0.7,
-  exclude: ["/admin/*"], 
+  exclude: [
+    '/admin-dashboard',
+    '/dashboard',
+    '/api/*',
+    '/login',
+    '/signup',
+    '/disclaimer',
+    '/privacy-policy',
+  ],
+  robotsTxtOptions: {
+    policies: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: [
+          '/admin-dashboard',
+          '/dashboard',
+          '/api/*',
+          '/login',
+          '/signup',
+          '/disclaimer',
+          '/privacy-policy',
+        ],
+      },
+    ],
+  },
 };
