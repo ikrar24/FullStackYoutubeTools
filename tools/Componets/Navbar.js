@@ -37,7 +37,7 @@ function Navbar() {
         >
           {[
             { href: "/", label: "Home" },
-            { href: "/seo-analysis", label: "SEO Analysis" },
+            { href: "/seo-analyzer", label: "SEO Analysis" },
             { href: "/description-generator", label: "Description Generator" },
             { href: "/title-suggestion", label: "Title Suggestion" },
             { href: "/thumbnails-generator", label: "Thumbnails Generator" },

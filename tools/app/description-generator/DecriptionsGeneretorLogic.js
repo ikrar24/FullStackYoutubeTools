@@ -177,6 +177,7 @@ function DescriptionGeneratorLogic() {
               <option value="Travel">Travel</option>
               <option value="Finance">Finance</option>
               <option value="Lifestyle">Lifestyle</option>
+              <option value="Food">Gaming</option>
               <option value="Food">Food</option>
             </select>
 

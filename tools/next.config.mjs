@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
-    output: 'standalone',
+  output: 'export', // Static site generation for Netlify
+  images: {
+    unoptimized: true, // Disable Next.js image optimization
+  },
 };
 
 export default nextConfig;

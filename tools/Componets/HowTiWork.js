@@ -7,7 +7,7 @@ function HowItWorks() {
     {
       name: "SEO Analysis",
       description: "Analyze your videos for SEO performance and get actionable insights to boost views.",
-      href: "/seo-analysis",
+      href: "/seo-analyzer",
       icon: <FaChartLine className="w-8 h-8 text-white" />
     },
     {

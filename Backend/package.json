@@ -1,14 +1,21 @@
 {
   "name": "next-tools",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Backend API for YouTube SEO Tools including title generator, keyword suggestions, thumbnail fetcher, channel/video insights, authentication, and dashboard data.",
+  "main": "main.js",
   "type": "module",
   "scripts": {
+    "dev": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "youtube-tools",
+    "seo-tools",
+    "express-backend",
+    "api",
+    "content-creator-tools"
+  ],
+  "author": "ikrar ansari",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.13.1",
