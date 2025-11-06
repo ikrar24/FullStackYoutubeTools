@@ -51,7 +51,8 @@ function DescriptionGeneratorLogic() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+ // base url 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:4000" ;
 
   // 📈 Views Counter
   useEffect(() => {
@@ -78,7 +79,7 @@ function DescriptionGeneratorLogic() {
     const loadingToast = toast.loading("✨ Generating SEO description...");
 
     try {
-      const response = await fetch(`${API_BASE}/api/descriptionGeneretor`, {
+      const response = await fetch(`${baseUrl}/api/descriptionGeneretor`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,13 +1,18 @@
 "use client";
 import React, { useEffect } from "react";
 
+
+  // base url 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:4000" ;
+  // console.log(baseUrl);
+
 const CheckViewsTest = () => {
   useEffect(() => {
-    console.log("hello");
+    // console.log("hello");
     
     const fetchViews = async () => {
       try {
-        const response = await fetch("http://localhost:4000/api/views/all", {
+        const response = await fetch(`${baseUrl}/api/views/all`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

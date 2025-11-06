@@ -19,7 +19,8 @@ function TitleSuggestionLogic() {
   const [wordCount, setWordCount] = useState(0);
   const [markdownText, setMarkdownText] = useState("");
   const [loading, setLoading] = useState(false);
-
+// base url 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:4000" ;
   
 // viwes counter 
 useEffect(() => {
@@ -42,7 +43,7 @@ toast.loading("Start Generet Please Wait")
     setMarkdownText("");
 
     try {
-      const response = await fetch("http://localhost:4000/api/titleSuggetion", {
+      const response = await fetch(`${baseUrl}/api/titleSuggetion`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

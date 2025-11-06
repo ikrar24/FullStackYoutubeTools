@@ -15,13 +15,17 @@ export default function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+// base url 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:4000" ;
+    
+
     if (!form.email || !form.password)
       return toast.error("Please fill all fields");
 
     try {
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:4000/api/user/login",
+        `${baseUrl}/api/user/login`,
         form, // ✅ form data yahan aayega
         {
           headers: {

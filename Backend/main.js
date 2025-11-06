@@ -12,6 +12,7 @@ import UserRouter from "./src/routes/UserRouter.js";
 import { startCleanupJob } from "./src/utils/cronJob.js";
 import cookieParser from "cookie-parser";
 import passwordRoute from "./src/routes/passwordRouts.js"
+import AuthByOriginMiddleware from "./middleware/AuthByOriginMiddleware.js";
 
 // after express.json()
 
@@ -33,23 +34,8 @@ app.use(express.urlencoded({ extended: true }));
 connection();
 
 // ✅ Origin Security Middleware
-app.use((req, res, next) => {
-  const allowedOrigin = process.env.ORIGIN;
-  const origin = req.get("origin");
+app.use(AuthByOriginMiddleware)
 
-  if (origin && origin !== allowedOrigin) {
-    return res.status(403).json({ message: "Unauthorized source" });
-  }
-
-  const clientKey = req.header("x-client-key")?.trim();
-  const expectedKey = process.env.FRONTEND_KEY?.trim();
-
-  if (!clientKey || clientKey !== expectedKey) {
-    return res.status(401).json({ message: "Invalid User" });
-  }
-
-  next();
-});
 
 // ✅ All API Routes
 app.use("/api", scrapeRoutes);

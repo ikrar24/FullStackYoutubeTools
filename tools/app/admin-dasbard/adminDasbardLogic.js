@@ -15,6 +15,8 @@ import {
   Legend,
 } from "recharts";
 
+
+
 const AdminDashboardLogic = () => {
   const [viewsData, setViewsData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,13 +24,20 @@ const AdminDashboardLogic = () => {
   const [password, setPassword] = useState("");
   const [authLoading, setAuthLoading] = useState(false);
 
+
+
+// base url 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:4000" ;
+  // console.log(baseUrl);
+
+
   // Fetch data only when authenticated
   useEffect(() => {
     if (!isAuthenticated) return;
 
     const fetchViewsData = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/views/all", {
+        const res = await axios.get(`${baseUrl}/api/views/all`, {
           headers: {
             "x-client-key": process.env.NEXT_PUBLIC_SECRETE_KEY,
           },
@@ -46,12 +55,15 @@ const AdminDashboardLogic = () => {
 
   // Handle password submit
   const handleSubmit = async (e) => {
+
+      
+
     e.preventDefault();
     if (!password) return alert("Please enter password");
 
     setAuthLoading(true);
     try {
-      const res = await fetch("http://localhost:4000/api/admin-password", {
+      const res = await fetch(`${baseUrl}/api/admin-password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

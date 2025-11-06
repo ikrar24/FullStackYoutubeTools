@@ -63,7 +63,8 @@ function AnalyzingLogic() {
   const [loading, setLoading] = useState(false);
   const [hasResult, setHasResult] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+  // base url 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:4000" ;
   const isProcessingRef = useRef(false);
 
   // ✅ Count page view once
@@ -136,7 +137,7 @@ function AnalyzingLogic() {
       try {
         if (cached) {
           const res = await axios.get(
-            `${API_BASE}/api/user-youtube-deatails?url=${encodeURIComponent(url)}`,
+            `${baseUrl}/api/user-youtube-deatails?url=${encodeURIComponent(url)}`,
             {
               headers: { "x-client-key": process.env.NEXT_PUBLIC_SECRETE_KEY },
             }
@@ -180,7 +181,7 @@ function AnalyzingLogic() {
         }
 
         const res = await axios.get(
-          `${API_BASE}/api/scrape?url=${encodeURIComponent(url)}`,
+          `${baseUrl}/api/scrape?url=${encodeURIComponent(url)}`,
           {
             headers: { "x-client-key": process.env.NEXT_PUBLIC_SECRETE_KEY },
           }
@@ -222,7 +223,7 @@ function AnalyzingLogic() {
         isProcessingRef.current = false;
       }
     },
-    [url, API_BASE, loading]
+    [url, baseUrl, loading]
   );
 
   const pieData = [

@@ -12,10 +12,13 @@ function Page() {
       const slug = window.location.pathname;
 
       
+        // base url 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:4000" ;
+  console.log(baseUrl);
       
 
       if (slug === "/") {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/views?slug=${slug}`, {
+        fetch(`${baseUrl}/api/views?slug=${slug}`, {
           headers: {
             "x-client-key":process.env.NEXT_PUBLIC_SECRETE_KEY,
           },
