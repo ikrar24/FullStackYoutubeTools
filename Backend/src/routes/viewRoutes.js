@@ -7,6 +7,7 @@ const router = express.Router();
 // ✅ Route: Increment view and track country
 router.get("/", async (req, res) => {
   try {
+    // console.log("Cookies coming: ", req.cookies);
     const { slug } = req.query;
     if (!slug) return res.status(400).json({ error: "Slug is required" });
 
