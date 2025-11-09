@@ -139,6 +139,7 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:4000" ;
           const res = await axios.get(
             `${baseUrl}/api/user-youtube-deatails?url=${encodeURIComponent(url)}`,
             {
+               withCredentials: true,
               headers: { "x-client-key": process.env.NEXT_PUBLIC_SECRETE_KEY },
             }
           );
@@ -180,12 +181,14 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:4000" ;
           }
         }
 
-        const res = await axios.get(
-          `${baseUrl}/api/scrape?url=${encodeURIComponent(url)}`,
-          {
-            headers: { "x-client-key": process.env.NEXT_PUBLIC_SECRETE_KEY },
-          }
-        );
+     const res = await axios.get(
+  `${baseUrl}/api/scrape?url=${encodeURIComponent(url)}`,
+  {
+    withCredentials: true,
+    headers: { "x-client-key": process.env.NEXT_PUBLIC_SECRETE_KEY },
+  }
+);
+
 
         const newUser = res.data?.user || {};
         const newAnalysis = res.data?.analysis || {};

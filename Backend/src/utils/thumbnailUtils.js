@@ -19,7 +19,7 @@ async function generateImage() {
 
     // Save image to file
     fs.writeFileSync("result.png", Buffer.from(response.data));
-    console.log("✅ Image generated successfully: result.png");
+    // console.log("✅ Image generated successfully: result.png");
   } catch (error) {
     console.error("❌ Error generating image:", error.response?.data || error.message);
   }

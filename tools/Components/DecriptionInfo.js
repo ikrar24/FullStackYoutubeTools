@@ -65,7 +65,7 @@ function DescriptionInfo() {
                 alt="YouTube Description Generator Input Preview"
                 width={500}
                 height={350}
-                className="rounded-2xl shadow-md hover:scale-105 transition-transform duration-300"
+                className="rounded-2xl shadow-md hover:scale-105 transition-transform duration-300 h-auto "
               />
             </div>
           </div>

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import "./Navbar.css";
+import { createToken } from "@/utils/createToken";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -18,6 +19,19 @@ function Navbar() {
 
   // ✅ Helper function to check active link (case-insensitive)
   const isActive = (path) => pathname?.toLowerCase() === path.toLowerCase();
+
+
+
+
+  // auth token 
+  useEffect(() => {
+    async function fetchToken() {
+      const tokenData = await createToken();
+      console.log("Token Response:", tokenData);
+    }
+    fetchToken();
+  }, []);
+
 
   return (
     <header className="navbar-header bg-white top-0 z-50">

@@ -13,8 +13,10 @@ import { startCleanupJob } from "./src/utils/cronJob.js";
 import cookieParser from "cookie-parser";
 import passwordRoute from "./src/routes/passwordRouts.js"
 import AuthByOriginMiddleware from "./middleware/AuthByOriginMiddleware.js";
+import {createToken} from "./src/Auth/createToken.js";
+import verifyCookie from "./middleware/AuthCheck.js";
 
-// after express.json()
+// after express.json() 
 
 dotenv.config();
 const app = express();
@@ -33,11 +35,19 @@ app.use(express.urlencoded({ extended: true }));
 // ✅ Database Connection
 connection();
 
+
+
+// auth token 
+app.get("/create-token" , createToken ) ;
+
 // ✅ Origin Security Middleware
 app.use(AuthByOriginMiddleware)
+app.use(verifyCookie);
 
 
-// ✅ All API Routes
+
+
+// All API Routes
 app.use("/api", scrapeRoutes);
 app.use("/api", passwordRoute);
 app.use("/api", CheckOldScrapeRoute);
@@ -47,15 +57,17 @@ app.use("/api", titleSuggetionRoutes);
 app.use("/api/images", imageRoutes);
 app.use("/api/user", UserRouter);
 
-// ✅ Default Route
+
+
+//  Default Route
 app.get("/", (req, res) => {
   res.send("✅ Server Running Successfully | Clipdrop + Cloudinary API Ready");
 });
 
-// ✅ Start Cleanup Job (if needed)
+//  Start Cleanup Job (if needed)
 startCleanupJob();
 
-// ✅ Start Server
+//  Start Server
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);

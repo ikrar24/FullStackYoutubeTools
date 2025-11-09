@@ -21,7 +21,7 @@ const MODELS = [
 ];
 
 const titleSuggetionUtils = async (userData) => {
-  console.log("🧠 Inside Util, received:", userData);
+  // console.log("🧠 Inside Util, received:", userData);
 
  const prompt = `You are an advanced YouTube SEO Title Generator AI.
 Your only task is to generate exactly 10 SEO-friendly, highly clickable, and keyword-optimized YouTube video titles based on the user’s given video topic.
@@ -66,7 +66,7 @@ Output Format (strictly follow this — no greeting, no intro):
   // 🔁 Try multiple OpenRouter models
   for (const model of MODELS) {
     try {
-      console.log(`🚀 Trying model: ${model}`);
+      // console.log(`🚀 Trying model: ${model}`);
 
       const response = await axios.post(
         "https://openrouter.ai/api/v1/chat/completions",
@@ -85,7 +85,7 @@ Output Format (strictly follow this — no greeting, no intro):
 
       const result = response.data?.choices?.[0]?.message?.content;
       if (result) {
-        console.log(`✅ Success from model: ${model}`);
+        // console.log(`✅ Success from model: ${model}`);
         return { success: true, titleSuggetions: result };
       }
     } catch (error) {
@@ -95,7 +95,7 @@ Output Format (strictly follow this — no greeting, no intro):
   }
 
   // 🧠 Gemini fallback
-  console.log("⚠️ All models failed. Switching to Gemini fallback...");
+  // console.log("⚠️ All models failed. Switching to Gemini fallback...");
 
   try {
     const geminiResponse = await axios.post(GEMINI_API, {
@@ -107,7 +107,7 @@ Output Format (strictly follow this — no greeting, no intro):
       const text =
         candidates[0]?.content?.parts?.[0]?.text ||
         "No result text found from Gemini";
-      console.log("✅ Gemini fallback success");
+      // console.log("✅ Gemini fallback success");
       return { success: true, titleSuggetions: text };
     } else {
       throw new Error("Gemini returned no candidates");

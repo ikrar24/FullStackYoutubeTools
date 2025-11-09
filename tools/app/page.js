@@ -11,16 +11,17 @@ function Page() {
     if (typeof window !== "undefined") {
       const slug = window.location.pathname;
 
-      
-        // base url 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:4000" ;
-  // console.log(baseUrl);
-      
+      // base url
+      const baseUrl =
+        process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:4000";
+      // console.log(baseUrl);
 
       if (slug === "/") {
         fetch(`${baseUrl}/api/views?slug=${slug}`, {
+          method: "GET",
+          credentials: "include",
           headers: {
-            "x-client-key":process.env.NEXT_PUBLIC_SECRETE_KEY,
+            "x-client-key": process.env.NEXT_PUBLIC_SECRETE_KEY,
           },
         });
       }

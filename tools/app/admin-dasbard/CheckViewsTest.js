@@ -1,19 +1,19 @@
 "use client";
 import React, { useEffect } from "react";
 
-
-  // base url 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:4000" ;
-  // console.log(baseUrl);
+// base url
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:4000";
+// console.log(baseUrl);
 
 const CheckViewsTest = () => {
   useEffect(() => {
     // console.log("hello");
-    
+
     const fetchViews = async () => {
       try {
         const response = await fetch(`${baseUrl}/api/views/all`, {
           method: "GET",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
             "x-client-key": process.env.NEXT_PUBLIC_SECRETE_KEY,

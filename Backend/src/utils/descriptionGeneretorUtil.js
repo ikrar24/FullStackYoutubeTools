@@ -21,7 +21,7 @@ const MODELS = [
 ];
 
 const descriptionGeneretorUtil = async (userData) => {
-  console.log("🧠 Inside Util, received:", userData);
+  // console.log("🧠 Inside Util, received:", userData);
 
   const prompt = `
 Generate a complete, long, and SEO-optimized YouTube video description.
@@ -46,7 +46,7 @@ Structure:
   // 🔁 Try multiple OpenRouter models
   for (const model of MODELS) {
     try {
-      console.log(`🚀 Trying model: ${model}`);
+      // console.log(`🚀 Trying model: ${model}`);
 
       const response = await axios.post(
         "https://openrouter.ai/api/v1/chat/completions",
@@ -65,7 +65,7 @@ Structure:
 
       const result = response.data?.choices?.[0]?.message?.content;
       if (result) {
-        console.log(`✅ Success from model: ${model}`);
+        // console.log(`✅ Success from model: ${model}`);
         return { success: true, GeneretedDescription: result };
       }
     } catch (error) {
@@ -75,7 +75,7 @@ Structure:
   }
 
   // 🧠 Gemini fallback
-  console.log("⚠️ All models failed. Switching to Gemini fallback...");
+  // console.log("⚠️ All models failed. Switching to Gemini fallback...");
 
   try {
     const geminiResponse = await axios.post(GEMINI_API, {
@@ -87,7 +87,7 @@ Structure:
       const text =
         candidates[0]?.content?.parts?.[0]?.text ||
         "No result text found from Gemini";
-      console.log("✅ Gemini fallback success");
+      // console.log("✅ Gemini fallback success");
       return { success: true, GeneretedDescription: text };
     } else {
       throw new Error("Gemini returned no candidates");

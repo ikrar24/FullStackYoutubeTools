@@ -12,10 +12,11 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:4000" ;
 // console.log(slug);
 
        await fetch(`${baseUrl}/api/views?slug=${slug}`, {
+        credentials: "include",
           headers: {
             "x-client-key":process.env.NEXT_PUBLIC_SECRETE_KEY,
           }})
- }
+ }4
 
 }
 

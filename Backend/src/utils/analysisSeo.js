@@ -96,7 +96,7 @@ Output Format (strictly follow this, no greeting or intro):
   // 🔁 Try each OpenRouter model
   for (const model of MODELS) {
     try {
-      console.log(`🚀 Trying model: ${model}`);
+      // console.log(`🚀 Trying model: ${model}`);
 
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 25000);
@@ -121,8 +121,8 @@ Output Format (strictly follow this, no greeting or intro):
       const result = response.data?.choices?.[0]?.message?.content;
       if (result) {
         const seoScores = extractSeoScores(result);
-        console.log(`✅ Success from model: ${model}`);
-        console.log("Extracted SEO Scores:", seoScores);
+        // console.log(`✅ Success from model: ${model}`);
+        // console.log("Extracted SEO Scores:", seoScores);
         return { success: true, model, result, seoScores };
       } else {
         throw new Error("Empty response");
@@ -135,7 +135,7 @@ Output Format (strictly follow this, no greeting or intro):
   }
 
   // 🧠 Gemini fallback
-  console.log("⚠️ All OpenRouter models failed. Switching to Gemini fallback...");
+  // console.log("⚠️ All OpenRouter models failed. Switching to Gemini fallback...");
 
   try {
     const geminiResponse = await axios.post(GEMINI_API, {
@@ -150,7 +150,7 @@ Output Format (strictly follow this, no greeting or intro):
     if (candidates && candidates.length > 0) {
       const text = candidates[0]?.content?.parts?.[0]?.text || "No result text found";
       const seoScores = extractSeoScores(text);
-      console.log("✅ Gemini fallback success");
+      // console.log("✅ Gemini fallback success");
       return { success: true, result: text, seoScores };
     } else {
       throw new Error("Gemini returned no candidates");

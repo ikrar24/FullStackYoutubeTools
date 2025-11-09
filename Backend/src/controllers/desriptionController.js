@@ -2,7 +2,7 @@ import descriptionGeneretorUtil from "../utils/descriptionGeneretorUtil.js";
 
 const descriptionGeneretorRouter = async (req, res) => {
   try {
-    console.log("🟢 Raw Body:", req.body);
+    // console.log("🟢 Raw Body:", req.body);
 
     const { title, topic, category } = req.body; // ✅ spelling fixed
 
@@ -12,7 +12,7 @@ const descriptionGeneretorRouter = async (req, res) => {
     }
 
     const userData = { title, topic, category };
-    console.log("📦 Processed Data:", userData);
+    // console.log("📦 Processed Data:", userData);
 
     // ✅ Wait for util response
     const responseData = await descriptionGeneretorUtil(userData);

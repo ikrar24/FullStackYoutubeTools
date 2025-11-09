@@ -45,6 +45,7 @@ toast.loading("Start Generet Please Wait")
     try {
       const response = await fetch(`${baseUrl}/api/titleSuggetion`, {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
            "x-client-key":process.env.NEXT_PUBLIC_SECRETE_KEY,

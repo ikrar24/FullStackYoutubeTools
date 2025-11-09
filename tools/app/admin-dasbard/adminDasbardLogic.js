@@ -38,6 +38,7 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:4000" ;
     const fetchViewsData = async () => {
       try {
         const res = await axios.get(`${baseUrl}/api/views/all`, {
+          credentials: "include",
           headers: {
             "x-client-key": process.env.NEXT_PUBLIC_SECRETE_KEY,
           },

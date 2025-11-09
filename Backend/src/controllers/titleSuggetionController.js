@@ -2,7 +2,7 @@ import titleSuggetionUtil from "../utils/titleSuggetionUtil.js";
 
 const titleSuggetionController = async (req, res) => {
   try {
-    console.log("🟢 Raw Body:", req.body);
+    // console.log("🟢 Raw Body:", req.body);
 
     const { topic } = req.body; // ✅ spelling fixed
 
@@ -12,7 +12,8 @@ const titleSuggetionController = async (req, res) => {
     }
 
     const userData = { topic};
-    console.log("📦 Processed Data:", userData);
+    // console.log("📦 Processed Data:", userData);
+
 
     // ✅ Wait for util response
     const responseData = await titleSuggetionUtil(userData);
