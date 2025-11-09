@@ -8,12 +8,13 @@ export const createToken = (req, res) => {
       expiresIn: "2d",
     });
 
-    res.cookie("boostViewers", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // Prod me true, local me false
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-      maxAge: 2 * 24 * 60 * 60 * 1000,
-    });
+   res.cookie("boostViewers", token, {
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  path: "/",
+  maxAge: 2 * 24 * 60 * 60 * 1000,
+});
 
     res.status(201).json({ message: "Token stored in cookies" });
   } catch (error) {
