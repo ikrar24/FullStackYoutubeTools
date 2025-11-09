@@ -25,11 +25,11 @@ const AuthByOriginMiddleware = async (req, res, next) => {
   if (!clientKey) {
     return res.status(401).json({
       success: false,
-      message: "x-client-key header missing"
+      message: "invalid user"
     });
   }
 
-  // ✅ Optional: Key verify karna
+
   if (clientKey !== process.env.FRONTEND_KEY) {
     return res.status(403).json({
       success: false,

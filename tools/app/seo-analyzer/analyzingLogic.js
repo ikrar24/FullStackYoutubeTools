@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useCallback, useRef } from "react";
-import ToolsBox from "@/Componets/ToolsBox";
+import ToolsBox from "@/Components/ToolsBox";
 import {
   BarChart,
   Bar,
@@ -22,8 +22,8 @@ import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
 import { motion } from "framer-motion";
-import AnalysisInfo from "@/Componets/AnalysisInfo";
-import FaqOfAanalysis from "@/Componets/FaqOfAanalysis";
+import AnalysisInfo from "@/Components/AnalysisInfo";
+import FaqOfAanalysis from "@/Components/FaqOfAanalysis";
 import toast from "react-hot-toast";
 import ViwesCount from "@/ViewsCount/ViewsCount";
 

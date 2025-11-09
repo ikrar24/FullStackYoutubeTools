@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import titleImage from "../Assets/titleImage.png"; // 🖼️ Add an image that visually represents title generation (e.g., YouTube titles concept)
-// import FaqOfTitle from "./FaqOfTitle"; // Optional FAQ section component if you plan to include it
 
 function TitleInfo() {
   return (
@@ -65,7 +63,7 @@ function TitleInfo() {
             {/* 🖼️ Image */}
             <div className="flex-1 flex justify-center">
               <Image
-                src={titleImage}
+                src="/titleImage.png"
                 alt="YouTube Title Generator Preview"
                 width={500}
                 height={350}

@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useEffect } from "react";
-import BoostViewsExplanation from "@/Componets/Explanation";
-import Faq from "@/Componets/Faq";
-import Hero from "@/Componets/Hero";
-import HowTiWork from "@/Componets/HowTiWork";
+import BoostViewsExplanation from "@/Components/Explanation";
+import Faq from "@/Components/Faq";
+import Hero from "@/Components/Hero";
+import HowTiWork from "@/Components/HowTiWork";
 
 function Page() {
   useEffect(() => {
@@ -14,7 +14,7 @@ function Page() {
       
         // base url 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:4000" ;
-  console.log(baseUrl);
+  // console.log(baseUrl);
       
 
       if (slug === "/") {

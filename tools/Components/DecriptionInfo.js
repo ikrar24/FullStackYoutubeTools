@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import formImage from "../Assets/formImage.png";
 import FaqOfDecription from "./FaqOfDecription";
 
 function DescriptionInfo() {
@@ -62,7 +61,7 @@ function DescriptionInfo() {
 
             <div className="flex-1 flex justify-center">
               <Image
-                src={formImage}
+                src="/formImage.png"
                 alt="YouTube Description Generator Input Preview"
                 width={500}
                 height={350}

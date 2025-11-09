@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import linechart from "../Assets/linechart.png";
-import pichart from "../Assets/pichart.png";
+
+
 
 function AnalysisInfo() {
   return (
@@ -72,7 +72,7 @@ function AnalysisInfo() {
             <div className="flex flex-col md:flex-row items-center justify-between gap-10">
               <div className="flex-1 flex justify-center">
                 <Image
-                  src={linechart}
+                  src="/linechart.png"
                   alt="Line chart showing YouTube video SEO analysis for title, tags, description, and hashtags"
                   width={500}
                   height={300}
@@ -114,7 +114,7 @@ function AnalysisInfo() {
             <div className="flex flex-col md:flex-row-reverse items-center justify-between gap-10">
               <div className="flex-1 flex justify-center">
                 <Image
-                  src={pichart}
+                  src="/pichart.png"
                   alt="Pie chart showing YouTube SEO score distribution including engagement, metadata, and optimization factors"
                   width={500}
                   height={300}

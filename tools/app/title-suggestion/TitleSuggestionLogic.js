@@ -1,6 +1,6 @@
 "use client";
 
-import ToolsBox from "@/Componets/ToolsBox";
+import ToolsBox from "@/Components/ToolsBox";
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -8,8 +8,8 @@ import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
 import { motion } from "framer-motion";
 import { ClipLoader } from "react-spinners";
-import TitleInfo from "@/Componets/TitleInfo";
-import FaqOfTitle from "@/Componets/FaqOfTitle";
+import TitleInfo from "@/Components/TitleInfo";
+import FaqOfTitle from "@/Components/FaqOfTitle";
 import toast from "react-hot-toast";
 import ViwesCount from "@/ViewsCount/ViewsCount";
 

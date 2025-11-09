@@ -4,7 +4,7 @@ import dynamic from "next/dynamic"; // lazy loading for heavy components
 import Image from "next/image";
 
 // HeroImage ko dynamic import nahi karte kyunki hero important hai → priority true rakhte hain
-import HeroImage from "../Assets/HeroImage.png";
+// import HeroImage from "../Assets/HeroImage.png";
 
 function Hero() {
   return (
@@ -20,7 +20,7 @@ function Hero() {
             Generate <strong>thumbnails,</strong> <strong>title,</strong> <strong className="text-red-500">SEO-optimized</strong> <strong>descriptions</strong> and more to <strong>grow your channel faster.</strong>
           </p>
           <Link 
-            href="/seo-aanalysis" 
+            href="/seo-analyzer" 
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 cursor-pointer"
           >
             Get Started Free
@@ -31,7 +31,7 @@ function Hero() {
         <section className="w-full md:w-1/2 flex justify-center items-center p-6">
           <div className="relative bg-linear-to-br from-blue-500 to-purple-600 rounded-3xl w-[95%] h-[300px] md:h-[450px] flex items-center justify-center overflow-hidden">
             <Image
-              src={HeroImage}
+              src="/HeroImage.png"
               alt="Hero Image"
               fill
               className="object-cover"

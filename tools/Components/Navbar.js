@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import ToolsLogo from "../Assets/ToolsLogo.png";
 import "./Navbar.css";
 
 function Navbar() {
@@ -26,7 +25,7 @@ function Navbar() {
 
         {/* Logo */}
         <Link href="/" className="logo">
-          <Image src={ToolsLogo} alt="logo" width={130} priority quality={75} />
+          <Image src="/ToolsLogo.png" alt="logo" height={135} width={135} priority quality={75} />
         </Link>
 
         {/* Menu Links */}

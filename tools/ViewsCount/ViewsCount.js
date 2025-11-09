@@ -9,7 +9,7 @@ const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:4000" ;
     
  if (typeof window !== "undefined") {
       const slug = window.location.pathname;
-console.log(slug);
+// console.log(slug);
 
        await fetch(`${baseUrl}/api/views?slug=${slug}`, {
           headers: {

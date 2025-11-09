@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
 import "./DescriptionGenerator.css";
-import DescriptionInfo from "@/Componets/DecriptionInfo";
+import DescriptionInfo from "@/Components/DecriptionInfo";
 import toast, { Toaster } from "react-hot-toast";
 import ViwesCount from "@/ViewsCount/ViewsCount";
 
