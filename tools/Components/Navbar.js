@@ -39,7 +39,7 @@ function Navbar() {
 
         {/* Logo */}
         <Link href="/" className="logo">
-          <Image src="/ToolsLogo.png" alt="logo" height={135} width={135} priority quality={75} />
+          <Image src="/ToolsLogo.png" alt="logo" width={150} height={150} priority quality={75} className="h-auto" />
         </Link>
 
         {/* Menu Links */}

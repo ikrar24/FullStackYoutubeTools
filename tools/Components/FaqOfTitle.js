@@ -12,7 +12,7 @@ function FaqOfTitle() {
 
   return (
     <section className="w-full py-16 px-4 bg-gray-50 text-gray-800">
-      <div className="max-w-4xl mx-auto text-center">
+      <div className="max-w-4xl mx-auto text-center select-none ">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
           Title Generator – Frequently Asked Questions
         </h2>

@@ -11,7 +11,7 @@ function Faq() {
   };
 
   return (
-    <section className="w-full py-16 px-4 bg-gray-50 text-gray-800">
+    <section className="w-full py-16 px-4 bg-gray-50 text-gray-800 select-none ">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">Frequently Asked Questions</h2>
         <p className="text-gray-600 mb-12">
@@ -27,7 +27,7 @@ function Faq() {
             onClick={() => toggleFAQ(0)}
           >
             <div className="flex justify-between items-center">
-              <h3 className="text-lg md:text-xl font-semibold">What is BoostViews?</h3>
+              <h3 className="text-lg md:text-xl font-semibold">What is BoostViewers?</h3>
               {openIndex === 0 ? (
                 <FaChevronUp className="text-blue-500 w-6 h-6" />
               ) : (
