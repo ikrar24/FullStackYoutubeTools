@@ -8,7 +8,7 @@ const verifyCookie = (req, res, next) => {
 
 try {
   
-  console.log("Cookies coming: ", req.cookies);
+  // console.log("Cookies coming: ", req.cookies);
 
   const token = req.cookies.boostViewers;
   if (!token) return res.status(401).json({ message: "unauthorised User" });

@@ -10,20 +10,15 @@ import { createToken } from "@/utils/createToken";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const pathname = usePathname(); // Current route
+  const pathname = usePathname();
 
-  // ✅ Close menu automatically when pathname changes (user navigates)
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
 
-  // ✅ Helper function to check active link (case-insensitive)
   const isActive = (path) => pathname?.toLowerCase() === path.toLowerCase();
 
-
-
-
-  // auth token 
+  // Fetch token once
   useEffect(() => {
     async function fetchToken() {
       const tokenData = await createToken();
@@ -32,14 +27,20 @@ function Navbar() {
     fetchToken();
   }, []);
 
-
   return (
     <header className="navbar-header bg-white top-0 z-50">
       <nav className="navbar-container max-w-6xl mx-auto flex items-center justify-between p-4">
-
         {/* Logo */}
         <Link href="/" className="logo">
-          <Image src="/ToolsLogo.png" alt="logo" width={150} height={150} priority quality={75} className="h-auto" />
+          <Image
+            src="/ToolsLogo.png"
+            alt="logo"
+            width={150}
+            height={150}
+            priority
+            quality={75}
+            className="h-auto"
+          />
         </Link>
 
         {/* Menu Links */}
@@ -48,26 +49,78 @@ function Navbar() {
             menuOpen ? "active" : ""
           }`}
         >
-          {[
-            { href: "/", label: "Home" },
-            { href: "/seo-analyzer", label: "SEO Analysis" },
-            { href: "/description-generator", label: "Description Generator" },
-            { href: "/title-suggestion", label: "Title Suggestion" },
-            { href: "/thumbnails-generator", label: "Thumbnails Generator" },
-          ].map(({ href, label }) => (
-            <li key={href}>
+          <li>
+            <Link
+              href="/"
+              className={`px-4 py-2 block ${
+                isActive("/") ? "active-link" : ""
+              }`}
+            >
+              Home
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              href="/seo-analyzer"
+              className={`px-4 py-2 block ${
+                isActive("/seo-analyzer") ? "active-link" : ""
+              }`}
+            >
+              SEO Analysis
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              href="/description-generator"
+              className={`px-4 py-2 block ${
+                isActive("/description-generator") ? "active-link" : ""
+              }`}
+            >
+              Description Generator
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              href="/title-suggestion"
+              className={`px-4 py-2 block ${
+                isActive("/title-suggestion") ? "active-link" : ""
+              }`}
+            >
+              Title Suggestion
+            </Link>
+          </li>
+
+          {/* Dropdown - Desktop Hover / Mobile Always Visible */}
+          <li className="dropdown">
+            <div className="dropdown-toggle">
               <Link
-                href={href}
-                className={`px-4 py-2 rounded-b-sm block ${
-                  isActive(href)
-                    ? "bg-blue-600 text-white underline"
-                    : "text-black hover:text-blue-600"
+                href="/thumbnails-generator"
+                className={`px-4 py-2 block flex items-center gap-1 ${
+                  isActive("/thumbnails-generator") ? "active-link" : ""
                 }`}
               >
-                {label}
+                Thumbnails Generator
+                <span className="arrow">›</span>
               </Link>
-            </li>
-          ))}
+            </div>
+
+            {/* Dropdown Content */}
+            <ul className="dropdown-menu">
+              <li>
+                <Link
+                  href="/thumbnails-downloader"
+                  className={`block px-4 py-2 ${
+                    isActive("/thumbnails-downloader") ? "active-link" : ""
+                  }`}
+                >
+                  Thumbnails Downloader
+                </Link>
+              </li>
+            </ul>
+          </li>
         </ul>
 
         {/* Hamburger Button */}
@@ -78,7 +131,6 @@ function Navbar() {
         >
           {menuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
-
       </nav>
     </header>
   );

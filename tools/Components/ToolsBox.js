@@ -38,9 +38,7 @@ export const metadata = {
 function ToolsBox({ children, h1, className, DivWidth }) {
   return (
     <>
-    <Head>
-      <title>Check title  </title>
-    </Head>
+  
     <main
       className={`min-h-screen flex flex-col ${className} bg-gradient-to-br from-[#f9c5d1] via-[#9795f0] to-[#fbc7d4] px-2 sm:px-6 py-8`}
     >

@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import connection from "./src/DB/connection.js";
 import scrapeRoutes from "./src/routes/scrapeRoutes.js";
 import CheckOldScrapeRoute from "./src/routes/CheckOldScrapeRoute.js";
+import thumbnailsDownloadRoute from "./src/routes/thumbnailsDownloadRoute.js";
 import viewRoutes from "./src/routes/viewRoutes.js";
 import generetedDescrptionRoute from "./src/routes/generetedDescrptionRoute.js";
 import titleSuggetionRoutes from "./src/routes/titleSuggetionRoutes.js";
@@ -12,6 +13,7 @@ import UserRouter from "./src/routes/UserRouter.js";
 import { startCleanupJob } from "./src/utils/cronJob.js";
 import cookieParser from "cookie-parser";
 import passwordRoute from "./src/routes/passwordRouts.js"
+import downloadRoutes from "./src/routes/downloadRoutes.js"
 import AuthByOriginMiddleware from "./middleware/AuthByOriginMiddleware.js";
 import {createToken} from "./src/Auth/createToken.js";
 import verifyCookie from "./middleware/AuthCheck.js";
@@ -47,11 +49,13 @@ app.use(verifyCookie);
 app.use("/api", scrapeRoutes);
 app.use("/api", passwordRoute);
 app.use("/api", CheckOldScrapeRoute);
+app.use("/api", thumbnailsDownloadRoute);
 app.use("/api/views", viewRoutes);
 app.use("/api", generetedDescrptionRoute);
 app.use("/api", titleSuggetionRoutes);
 app.use("/api/images", imageRoutes);
 app.use("/api/user", UserRouter);
+app.use("/api/download", downloadRoutes);
 
 // ✅ Default Route
 app.get("/", (req, res) => {

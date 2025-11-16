@@ -8,7 +8,7 @@ const Footer = () => {
 
         {/* Left Section */}
         <div className="mb-4 md:mb-0 text-center md:text-left">
-          <h3 className="text-lg font-semibold text-white">BoostViews</h3>
+          <p className="text-lg font-semibold text-white">BoostViewers</p>
           <p className="text-gray-400 text-sm mt-1">
             <strong className="font-light">
               Helping you grow your YouTube channel with smart tools.
