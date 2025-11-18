@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ToolsBox from "../../Components/ToolsBox";
+import ViwesCount from "@/ViewsCount/ViewsCount";
 
 function ThumbnailsDownloaderLogic() {
   const [url, setUrl] = useState("");
@@ -13,6 +14,17 @@ function ThumbnailsDownloaderLogic() {
 
   const baseLink =
     process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:4000";
+
+//  page analyesis viwe 
+
+useEffect(() => {
+  ViwesCount();
+}, [])
+
+
+
+
+
 
   // 📌 DOWNLOAD HANDLER (Direct Stream)
   const handleDownload = async () => {
@@ -57,6 +69,10 @@ function ThumbnailsDownloaderLogic() {
       setDownloadingloading(false);
     }
   };
+
+
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();

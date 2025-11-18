@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { FaPhotoVideo, FaFileAlt, FaLightbulb, FaChartLine } from 'react-icons/fa';
+import { FaPhotoVideo, FaFileAlt, FaLightbulb, FaChartLine, FaImage } from 'react-icons/fa';
 
 function HowItWorks() {
   const tools = [
@@ -22,6 +22,13 @@ function HowItWorks() {
       href: "/title-suggestion",
       icon: <FaLightbulb className="w-8 h-8 text-white" />
     },
+ {
+  name: "Thumbnails Downloader",
+  description: "Download high-quality YouTube thumbnails instantly in HD, HQ, SD or any available format.",
+  href: "/thumbnails-downloader",
+  icon: <FaImage className="w-8 h-8 text-white" />
+}
+,
     {
       name: "Thumbnails Generator",
       description: "Create eye-catching thumbnails that increase click-through rates and attract more viewers.",

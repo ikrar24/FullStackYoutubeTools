@@ -6,6 +6,9 @@ const handlePassword = (req, res) => {
   try {
     const { password } = req.body;
 
+    // console.log(password);
+    
+
     // 🔹 Check if password is provided
     if (!password) {
       return res
